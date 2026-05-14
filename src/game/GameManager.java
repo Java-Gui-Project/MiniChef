@@ -28,20 +28,21 @@ public class GameManager {
     private void buildRecipes() {
         Recipe easy = new Recipe("ข้าวซอย", "เชียงใหม่", 100, Recipe.Difficulty.EASY);
         easy.add("เส้นบะหมี่", "🍜");
-        easy.add("น่องไก่",    "🍗");
+        easy.add("ไก่",    "🍗");
         easy.add("กะทิ",       "🥥");
         easy.add("พริกแกง",    "🌶️");
-        easy.add("หอมแดง",     "🧅");
+        easy.add("หัวหอม",     "🧅");
         easy.add("มะนาว",      "🍋");
         allRecipes.add(easy);
 
         Recipe medium = new Recipe("แกงฮังเล", "เชียงใหม่", 150, Recipe.Difficulty.MEDIUM);
         medium.add("หมูสามชั้น",   "🥓");
         medium.add("พริกแกงฮังเล", "🌶️");
-        medium.add("ขิง",          "🌿");
+        medium.add("ขิง",          "🫚");
         medium.add("กระเทียม",     "🧄");
         medium.add("ถั่วลิสง",     "🥜");
-        medium.add("มะขามเปียก",   "🤎");
+        medium.add("มะขามเปียก",   "🟤");
+        medium.add("น้ำปลา",   "🐟");
         allRecipes.add(medium);
 
         Recipe hard = new Recipe("น้ำพริกหนุ่ม", "เชียงใหม่", 220, Recipe.Difficulty.HARD);
@@ -49,7 +50,9 @@ public class GameManager {
         hard.add("หอมแดง",    "🧅");
         hard.add("กระเทียม",  "🧄");
         hard.add("กะปิ",      "🦐");
+        hard.add("มะเขือเทศ",      "🍅");
         hard.add("เกลือ",     "🧂");
+        hard.add("น้ำปลา",     "🐟");
         allRecipes.add(hard);
     }
 
