@@ -25,7 +25,7 @@ public class DifficultyPanel extends JPanel {
         row.setBorder(Theme.pad(0, 40, 40, 40));
 
         Object[][] levels = {
-            {"🐣",      "ง่าย",     "EASY",   Theme.EASY, "ข้าวซอย",      "75 วินาที | 2 ตัวลวง"},
+            {"🐣",      "ง่ายมาก",     "EASY",   Theme.EASY, "ข้าวซอย",      "75 วินาที | 2 ตัวลวง"},
             {"👨‍🍳", "ปานกลาง", "MEDIUM", Theme.MED,  "แกงฮังเล",     "55 วินาที | 4 ตัวลวง"},
             {"🔥",      "ยาก",      "HARD",   Theme.HARD, "น้ำพริกหนุ่ม", "35 วินาที | 6 ตัวลวง"},
         };
