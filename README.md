@@ -104,3 +104,107 @@ Malee,480,HARD,น้ำพริกหนุ่ม
 ```
 
 The leaderboard displays the top 5 scores across all sessions.
+
+---
+
+## Git Branching Workflow
+
+### Branch Rules
+
+| Branch | Purpose |
+|--------|---------|
+| `main` | Stable, working code only. Never commit new features directly here. |
+| `dev/<feature-name>` | One branch per feature or fix, always created from `main`. |
+
+### Adding a New Feature
+
+**1. Make sure your local `main` is up to date**
+```bash
+git checkout main
+git pull origin main
+```
+
+**2. Create a new branch from `main`**
+
+Name it after what you are building:
+```bash
+git checkout -b dev/add-new-recipe
+```
+
+Other examples:
+```bash
+git checkout -b dev/sound-effects
+git checkout -b dev/fix-timer-bug
+git checkout -b dev/leaderboard-pagination
+```
+
+**3. Work on your feature**
+
+Make changes, then commit as you go:
+```bash
+git add .
+git commit -m "add: new recipe for khao soi gai"
+```
+
+**4. Push your branch to remote**
+```bash
+git push origin dev/add-new-recipe
+```
+
+**5. Merge into `main` when the feature is finished**
+```bash
+git checkout main
+git merge dev/add-new-recipe
+git push origin main
+```
+
+**6. Delete the feature branch after merging**
+```bash
+# Delete local branch
+git branch -d dev/add-new-recipe
+
+# Delete remote branch
+git push origin --delete dev/add-new-recipe
+```
+
+---
+
+### Full Example — Adding a New Dish
+
+```bash
+# 1. Start from latest main
+git checkout main
+git pull origin main
+
+# 2. Create feature branch
+git checkout -b dev/add-dish-gaeng-hang-le
+
+# 3. Edit GameManager.java to add the new recipe, commit
+git add src/game/GameManager.java
+git commit -m "add: gaeng hang le recipe with ingredients"
+
+# 4. Push branch
+git push origin dev/add-dish-gaeng-hang-le
+
+# 5. Merge back into main
+git checkout main
+git merge dev/add-dish-gaeng-hang-le
+git push origin main
+
+# 6. Clean up
+git branch -d dev/add-dish-gaeng-hang-le
+git push origin --delete dev/add-dish-gaeng-hang-le
+```
+
+---
+
+### Branch Naming Convention
+
+```
+dev/<what-you-are-doing>
+
+dev/add-<feature>       — new feature
+dev/fix-<bug>           — bug fix
+dev/update-<thing>      — update or improvement
+dev/remove-<thing>      — removing something
+```
