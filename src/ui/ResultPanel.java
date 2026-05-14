@@ -7,26 +7,41 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-/** End-of-game summary screen: final score and top-5 leaderboard. */
+/**
+ * หน้าจอสรุปผลหลังจบเกม
+ * แสดงข้อความยินดี คะแนนสุดท้ายของเชฟ และตาราง Leaderboard TOP 5
+ * เรียก refresh() ทุกครั้งก่อนแสดงหน้านี้เพื่อดึงข้อมูลล่าสุด
+ */
 public class ResultPanel extends JPanel {
 
+    /** GameManager สำหรับดึงชื่อ คะแนน และโหลด Leaderboard */
     private final GameManager gm;
-    private final Navigator   nav;
 
+    /** Navigator สำหรับกลับหน้าเมนูหลัก */
+    private final Navigator nav;
+
+    /**
+     * สร้าง ResultPanel (ยังไม่ build UI จนกว่าจะเรียก refresh())
+     * @param gm  GameManager ที่มีข้อมูลผู้เล่นและ Leaderboard
+     * @param nav Navigator สำหรับเปลี่ยนหน้าจอ
+     */
     public ResultPanel(GameManager gm, Navigator nav) {
         this.gm  = gm;
         this.nav = nav;
         setName("RESULT");
     }
 
-    /** Rebuilds the screen with the latest score and leaderboard data. */
+    /**
+     * สร้างหน้าสรุปผลใหม่ทั้งหมดด้วยข้อมูลล่าสุด
+     * ถูกเรียกโดย Navigator ทุกครั้งก่อนแสดงหน้านี้
+     */
     public void refresh() {
         removeAll();
         setLayout(new BorderLayout(20, 20));
         setBackground(Color.WHITE);
         setBorder(Theme.pad(30, 50, 30, 50));
 
-        // Congratulation header
+        // ส่วนบน: ข้อความยินดีและคะแนนสุดท้าย
         JLabel lblWin = new JLabel("🎉 ภารกิจสำเร็จ! 🎉", SwingConstants.CENTER);
         lblWin.setFont(new Font("Tahoma", Font.BOLD, 36));
         lblWin.setForeground(Theme.GREEN);
@@ -40,7 +55,7 @@ public class ResultPanel extends JPanel {
         JPanel topSection = Theme.vbox(lblWin, lblScore);
         topSection.setOpaque(false);
 
-        // Leaderboard table
+        // ส่วนกลาง: ตาราง Leaderboard TOP 5
         List<Chef> topList = gm.loadLeaderboard();
         String[]   columns = {"อันดับ", "ชื่อเชฟ", "คะแนน"};
         Object[][] data    = new Object[topList.size()][3];
@@ -53,7 +68,7 @@ public class ResultPanel extends JPanel {
         JTable table = new JTable(data, columns);
         table.setFont(Theme.F_PLAIN);
         table.setRowHeight(30);
-        table.setEnabled(false);
+        table.setEnabled(false); // ป้องกันการแก้ไขตาราง
         table.getTableHeader().setFont(Theme.F_BOLD);
         table.getTableHeader().setBackground(Theme.ORANGE);
         table.getTableHeader().setForeground(Color.WHITE);
@@ -62,7 +77,7 @@ public class ResultPanel extends JPanel {
         scrollPane.setPreferredSize(new Dimension(400, 180));
         scrollPane.setBorder(BorderFactory.createTitledBorder(" 🏆 อันดับเชฟยอดเยี่ยม 🏆 "));
 
-        // Back button
+        // ส่วนล่าง: ปุ่มกลับหน้าหลัก
         JButton bHome = Theme.pill("กลับหน้าหลัก", Theme.ORANGE);
         bHome.addActionListener(e -> nav.showMenu());
 
